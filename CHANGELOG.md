@@ -1,0 +1,50 @@
+# Changelog
+
+## v3.2.0
+
+[itsbluetic/expert-panel-by-ebp](https://github.com/itsbluetic/expert-panel-by-ebp) v3.1.0을 역공학 리뷰하며 발견한 문제를 반영. 각 항목은 리뷰에서 나온 순서대로 정리.
+
+### 1. `--quick` 모드 사양 모순 수정
+
+v3.1.0의 `SKILL.md`에는 `--quick` 흐름이 두 곳에 서로 다르게 적혀 있었다:
+
+- Dispatch 표: `Quick Flow (3→4→5→6→7)`, `▶ [1/5]`부터 시작 — 0단계(Mirror) 언급 없음, 3단계(깊은 제약)는 별도 실행되는 것으로 읽힘
+- `--quick 모드` 상세 섹션: 0단계(Mirror) 유지, 3단계는 질문 없이 0단계 응답 재사용, `▶ [0/4]`부터 시작
+
+두 서술이 정확히 반대였다. 커밋 이력(`분할 User Gate 도입`)과 상세 섹션의 설명 밀도로 볼 때 후자가 의도된 사양으로 판단해, Dispatch 표를 `Quick Flow (0→4→5→6→7)`, `▶ [0/4]`로 통일했다.
+
+### 2. 근거 인용에 원문 URL 필수화
+
+기존에는 "저자, 연도"만 요구해 WebSearch 스니펫 기반 confabulation을 검증할 방법이 없었다. `[Strong]`/`[Moderate]` 태그에는 원문 URL을 동반하도록 하고, 확보하지 못하면 태그를 하향하거나 `(원문 미확인)`을 병기하게 했다.
+
+### 3. `allowed-tools`에 `WebFetch` 추가
+
+WebSearch는 스니펫만 반환한다. 2단계에서 `[Strong]`/`[Moderate]` 태그를 붙이기 전 WebFetch로 원문을 열어 저자·연도·표본크기가 스니펫과 일치하는지 대조하도록 했다.
+
+### 4. 실명 인물 시뮬레이션 가드 강화
+
+기존 디스클레이머("이 토론은 시뮬레이션입니다")가 4단계 도입부 한 곳에만 있었다. 정책/법률/의료처럼 실명 오귀속의 파장이 큰 주제(개발협력/ODA 정책 등)에서는 0단계에서 실명 패널 vs 역할 아키타입 패널을 선택하게 하고, 디스클레이머를 저장물(7단계)까지 유지하도록 명시했다.
+
+### 5. Obsidian 저장 외부 의존성 명시 + 자동 폴백
+
+7단계의 "Obsidian" 저장 옵션은 이 저장소에 포함되지 않은 `/obsidian-save` 커맨드에 의존했다. 이 의존성을 README/SKILL.md에 명시하고, 커맨드가 없으면 조용히 실패하는 대신 로컬 `.md` 저장으로 자동 폴백 + 사용자 안내를 하도록 했다.
+
+### 6. Gate를 출력형 자기검증으로 전환
+
+"✓ Gate: ... 미충족 시 → fallback" 서술은 모델의 내부 판단에만 의존했다. 각 단계 끝에 `✓/✗ Gate [N] — {수치/사실 근거}` 한 줄을 실제로 출력하도록 Hard Rule을 추가해, 게이트 통과 여부가 대화 로그에 남는 확인 가능한 산출물이 되게 했다.
+
+### 7. 버전 라벨 정리
+
+`legacy/전문가소환.md`는 파일 내부에 "v2.0"이라 적혀 있지만 README/SKILL.md에서는 "v1 flat 파일"로 지칭해 혼동이 있었다. README에서 "최초 배포판(파일 내부 표기 v2.0)"으로 명확히 했다.
+
+---
+
+## v3.1.0 (원본, itsbluetic/expert-panel-by-ebp)
+
+- `allowed-tools` 명시 (Read, WebSearch, Write, AskUserQuestion)
+- 분할 User Gate 도입 — 새 0단계(Mirror + 현재 상황) + 기존 3단계(깊은 제약)로 분리
+- 0·3·7단계에 `AskUserQuestion` 도구 호출 명시 (이전엔 텍스트로만)
+- "Hard Rules" 섹션 추가 (5개 행동 규칙)
+- "Checklist Before Stopping" 10항목으로 확장 (0단계 추가)
+- 6축 매핑 표 추가 (분할 게이트 반영)
+- 폴더 구조로 재배치 (`SKILL.md` + `references/`)
