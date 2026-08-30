@@ -2,8 +2,6 @@
 
 근거 기반(Evidence-Based Practice) 전문가 패널 토론 스킬 for [Claude Code](https://claude.com/claude-code).
 
-[itsbluetic/expert-panel-by-ebp](https://github.com/itsbluetic/expert-panel-by-ebp) v3.1.0을 역공학 리뷰한 뒤, 그 리뷰에서 나온 개선점을 반영한 포크입니다. 원본의 8단계 구조·근거 태그 체계·설계 철학은 그대로 유지하고, 실행 시 발견된 내부 모순과 근거 검증 가능성 위주로 손을 댔습니다. 원본 저장소가 살아있는 한 그쪽이 정본이며, 이 저장소는 별도 파생판입니다.
-
 주어진 주제에 대해 **관련 학문 분야의 근거를 먼저 탐색**한 후, 해당 근거에 기반한 6인 전문가 패널이 토론하고, 사용자 맥락에 맞춘 최소 실험(MVE)까지 설계합니다.
 
 > "전문가가 이렇다고 해서 무조건 따르지 않는다. 근거 없는 전문가 조언은 안 하느니만 못할 수 있다." — EBP 원칙
@@ -129,4 +127,4 @@ expert-panel-ebp-plus/
 
 ## License
 
-MIT — 원본 저장소도 MIT로 명시되어 있었으나 LICENSE 파일이 없어, 이 저장소에는 원 저자 표기를 포함한 LICENSE 파일을 추가했습니다.
+MIT
