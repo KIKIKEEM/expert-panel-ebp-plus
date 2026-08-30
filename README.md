@@ -95,7 +95,7 @@ expert-panel-ebp-plus/
 ├── LICENSE                            # MIT
 ├── skills/
 │   └── expert-panel/
-│       ├── SKILL.md                   # 메인 스킬 (v3.2.0)
+│       ├── SKILL.md                   # 메인 스킬 (v3.3.0)
 │       └── references/
 │           ├── evidence-framework.md  # OCEBM 기반 근거 수준 학술 배경
 │           └── implementation-guide.md # Implementation Science / PBE 심화
@@ -104,6 +104,10 @@ expert-panel-ebp-plus/
 └── legacy/
     └── 전문가소환.md                   # 최초 배포판 (파일 내부 표기 v2.0, 참조용)
 ```
+
+## v3.3.0 변경점 (vs v3.2.0)
+
+질문 방식 조정: 필요한 정보는 짐작하지 말고 `AskUserQuestion`으로 묻되, 한 호출에 질문을 몰아넣지 않고 하나씩 순차 진행 + 답변 후 더 깊은 정보가 필요하면 후속 질문으로 이어가도록 명시 (Hard Rule #8). 자세한 배경은 `CHANGELOG.md` 참조.
 
 ## v3.2.0 변경점 (vs v3.1.0)
 
